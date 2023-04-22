@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Colorlib Templates">
+    <meta name="author" content="Colorlib">
+    <meta name="keywords" content="Colorlib Templates">
+
+    <!-- Title Page-->
+    <title>Book your Reservation</title>
+
+    <!-- Icons font CSS-->
+    <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+    <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!-- Vendor CSS-->
+    <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="css/main.css" rel="stylesheet" media="all">
+</head>
+
+<body>
+    <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
+        <div class="wrapper wrapper--w680">
+            <div class="card card-4">
+                <div class="card-body">
+                    <% var len = confd.length %>
+
+                    <% var lx = 0 %>
+                    <% if(confd.length > 0){
+                        confd.forEach(function(row){
+                        %>
+                 <div>
+        
+                <% if(row.coach == "3AC") { %>
+                    <% lx = lx + 1; %>
+              <%  } %>
+                 </div>
+                        <% })} %>
+                
+        
+                        <% var sx = 0 %>
+                        <% if(confd.length > 0){
+                            confd.forEach(function(row){
+                            %>
+                     <div>
+            
+                    <% if(row.coach == "2AC") { %>
+                        <% sx = sx + 1; %>
+                  <%  } %>
+                     </div>
+                            <% })} %>
+        
+        
+                            <% var s = 0 %>
+                            <% if(confd.length > 0){
+                                confd.forEach(function(row){
+                                %>
+                         <div>
+                
+                        <% if(row.coach == "1AC") { %>
+                            <% s = s + 1; %>
+                      <%  } %>
+                         </div>
+                                <% })} %>
+                    
+                    <h2 class="title" style="color: green;">TICKET CONFIRMATION</h2>
+                  
+                        <div class="row row-space">
+                            <div class="col-8">
+                                <div class="input-group">
+                                    <label class="label">Train</label>
+                                  <h3><%= confd[len-1].trainname %> (<%= confd[len-1].trainnumber %>) </h3>
+                                    <!-- <input class="input--style-4" type="text" name="sfrom" disabled> -->
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="input-group">
+                                    <label class="label">PNR</label>
+                                    <h3><%= confd[len-1].pnr %> </h3>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label"><h3><%= confd[len-1].dob %></h3></label>
+                                      <p><%= confd[len-1].sfrom %></p>
+                                    <!-- <input class="input--style-4" type="text"  disabled name="trainname"> -->
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="input-group">
+                                    <label class="label"><h3><%= confd[len-1].sto %></h3></label>
+                                    <p><%= confd[len-1].sto %></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-1">
+                                <div class="input-group">
+                                    <label class="label"><h1>Passenger Information</h1></label>
+                                     
+                                </div>
+                            </div>
+                           
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-1">
+                                <div class="input-group">
+                                    <label class="label">First Name</label>
+                                    <h3><%= confd[len-1].fname %> </h3>
+                                                          
+                                    <p> Age : <%= confd[len-1].age %></p>
+                                   
+                                </div>
+                            </div>
+                           
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Ticket Status</label>
+                                    <h3>Confirmed</h3>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Coach</label>
+                                    <h3><%= confd[len-1].coach %></h3>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Berth</label>
+                                
+                                    <% if(confd[len-1].age >= 60) { %>
+                                        <h3><p><%= 4  %></p></h3>
+                                        <% }else if(confd[len-1].age%2 == 0){ %>
+                                            <h3><p><%= 8  %></p></h3>
+                                      <%  }else if(confd[len-1].age%3 == 0){ %>
+                                      <h3><p><%= 7  %></p></h3>
+                                      <%  }else if(confd[len-1].age%5 == 0){ %>
+                                      <h3><p><%= 2  %></p></h3>
+                                      <%  } else { %>
+                                      <h3><p><%= 3 %></p></h3>
+                                      <% } %>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Berth Type</label>
+                                    <% if(confd[len-1].age >= 60) { %>
+                                    <h3>Lower</h3>
+                                    <% }else if(confd[len-1].age%2 == 0){ %>
+                                        <h3>Side Upper</h3>
+                                  <%  }else if(confd[len-1].age%3 == 0){ %>
+                                  <h3>Side Lower</h3>
+                                  <%  }else if(confd[len-1].age%5 == 0){ %>
+                                  <h3>Middle</h3>
+                                  <%  } else { %>
+                                  <h3>Upper</h3>
+                                  <% } %>
+                                </div>
+                            </div>
+                        </div>
+                          <h3 style="margin: 10px;">Other Passangers Details</h3>
+                        <% if(confd[len-1].passangers != ''){ %>
+                            
+                            <% for(var i=0;i< confd[len-1].passangers.length;i++){  %>
+                        <div class="row row-space">
+                            <div class="col-1">
+                                <div class="input-group">
+                                    <label class="label">First Name</label>
+                                    <h3><%= confd[len-1].passangers[i] %> </h3>
+                                                          
+                                    <p> Age : <%= confd[len-1].pass_age[i] %></p>
+                                   
+                                </div>
+                            </div>
+                           
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Ticket Status</label>
+                                    <h3>Confirmed</h3>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Coach</label>
+                                    <h3><%= confd[len-1].coach %></h3>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Berth</label>
+                                
+                                    <% if(confd[len-1].pass_age[i] >= 60) { %>
+                                        <h3><p><%= 14 + i %></p></h3>
+                                        <% }else if(confd[len-1].pass_age[i]%2 == 0){ %>
+                                            <h3><p><%= 18 + i %></p></h3>
+                                      <%  }else if(confd[len-1].pass_age[i]%3 == 0){ %>
+                                      <h3><p><%= 17 + i %></p></h3>
+                                      <%  }else if(confd[len-1].pass_age[i]%5 == 0){ %>
+                                      <h3><p><%= 12 + i %></p></h3>
+                                      <%  } else { %>
+                                      <h3><p><%= 13 + i %></p></h3>
+                                      <% } %>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Berth Type</label>
+                                    <% if(confd[len-1].pass_age[i] >= 60) { %>
+                                    <h3>Lower</h3>
+                                    <% }else if((confd[len-1].pass_age[i]+i)%2 == 0){ %>
+                                        <h3>Side Upper</h3>
+                                  <%  }else if((confd[len-1].pass_age[i]+i)%3 == 0){ %>
+                                  <h3>Side Lower</h3>
+                                  <%  }else if((confd[len-1].pass_age[i]+i)%5 == 0){ %>
+                                  <h3>Middle</h3>
+                                  <%  } else { %>
+                                  <h3>Upper</h3>
+                                  <% } %>
+                                </div>
+                            </div>
+                        </div>
+                        <% }} %>
+                        <div class="p-t-10">
+                            <button class="btn btn--radius-2 btn--blue" type="submit"><a href="/home">OK</a></button>
+                        </div>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Jquery JS-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <!-- Vendor JS-->
+    <script src="vendor/select2/select2.min.js"></script>
+    <script src="vendor/datepicker/moment.min.js"></script>
+    <script src="vendor/datepicker/daterangepicker.js"></script>
+
+    <!-- Main JS-->
+    <script src="js/global.js"></script>
+
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+
+</html>
+<!-- end document-->

@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IRCTC</title>
+    <!----======== CSS ======== -->
+
+    <!----===== Boxicons CSS ===== -->
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+
+    <!--<title>Dashboard Sidebar Menu</title>-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="https://cdn.ckeditor.com/4.9.1/standard/ckeditor.js"></script>
+    <link rel="stylesheet" href="admin.css">
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td,
+        th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="sidebar">
+        <header>
+            <div class="image-text">
+                <span class="image">
+                    <!--<img src="logo.png" alt="">-->
+                </span>
+
+                <div class="text logo-text">
+                    <span class="name"><a href="/home"><%= users.fname %></a></span>
+
+                </div>
+            </div>
+            <!-- <i class='bx bx-chevron-right toggle'></i> -->
+        </header>
+
+        <div class="menu-bar">
+            <div class="menu">
+
+                <ul class="menu-links">
+
+
+                    <li class="nav-link">
+                        <a href="#addproduct" onclick="addproduct()">
+                            <div></div>
+                            <span class="text nav-text" style="margin-left: 25px;"><b>My Profile</b> </span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="#userList" onclick="userList()">
+                            <div></div>
+                            <span class="text nav-text" style="margin-left: 25px;"><b>My Tickets</b></span>
+                        </a>
+                    </li>
+
+
+                    <!-- <li class="nav-link">
+                        <a href="#account" onclick="account()">
+                            <i class='bx bx-bell icon'></i>
+                            <span class="text nav-text">Add Station</span>
+                        </a>
+                    </li> -->
+
+                    <!-- <li class="nav-link">
+                        <a href="#stock" onclick="stock()">
+                            <i class='bx bx-bell icon'></i>
+                            <span class="text nav-text">Tickets</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="#account" onclick="category()">
+                            <i class='bx bx-bell icon'></i>
+                            <span class="text nav-text">Trains</span>
+                        </a>
+                    </li> -->
+                    <!-- <li class="nav-link">
+                        <a href="#account" onclick="payment()">
+                            <i class='bx bx-bell icon'></i>
+                            <span class="text nav-text">Stations</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="#price" onclick="price()">
+                            <i class='bx bx-bell icon'></i>
+                            <span class="text nav-text">Ticket Price</span>
+                        </a>
+                    </li>
+
+                
+
+
+                    <li class="nav-link">
+                        <a href="#refund" onclick="refund()">
+                            <i class='bx bx-bell icon'></i>
+                            <span class="text nav-text">Cancel</span>
+                        </a>
+                    </li> -->
+
+
+
+                </ul>
+            </div>
+
+            <div class="bottom-content">
+                <li class="">
+                    <a href="/logout">
+                       
+                        <span class="text nav-text" style="margin-left: 25px;"><b>Logout</b></span>
+                    </a>
+                </li>
+            </div>
+
+        </div>
+    </nav>
+
+    <section class="home" style="background-image: url(irctc.jpg);height: auto;background-position: center;
+    background-repeat: no-repeat;background-size: cover;width: 79%;">
+
+        <div id="Dashboard" class="collpase">
+            <div style="text-align: center;">
+                <h1>Train</h1>
+
+            </div>
+        </div>
+
+        <!-- ALL USERS LIST   -->
+
+        <div id="addproduct" class="collpase">
+            <div class="container">
+                <div class="row">
+
+                    <div id="signupbox" style="margin-top:50px"
+                        class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+                        <div class="panel panel-info" style="margin-top: 170px;">
+                            <div class="panel-heading">
+                                <div class="panel-title">My Details</div>
+                            </div>
+                            <div class="panel-body">
+
+
+                                    <div class="form-group">
+                                        <label for="username" class="col-md-3 ">First Name</label>
+                                        <div class="col-md-9">
+                                          <p><b><%= users.fname %></b></p>
+                                        </div>
+                                    </div>
+
+                                    
+                                    <div class="form-group">
+                                        <label for="number" class="col-md-3 control-label">Gmail Id</label>
+                                        <div class="col-md-9">
+                                            <p><b><%= users.email %></b></p>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="number" class="col-md-3 control-label">Phone Number</label>
+                                        <div class="col-md-9">
+                                            <p><b><%= users.pnumber %></b></p>
+                                        </div>
+                                    </div>
+
+
+                              
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--ADD NEW Locations   -->
+
+        <div id="account" class="collpase">
+           
+        </div>
+
+        <!--ADD NEW CATEGORY LIST   -->
+
+        <div id="userList" class="collpase">
+            <div class="container">
+                <div class="row">
+
+                    <div id="signupbox" style="margin-top:50px"
+                        class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+
+                        <% if(confd.length >0){
+                            confd.forEach(function(row){
+                            %>
+
+                            <% if(row.email == loginUser){ %>
+
+                            
+                        <div class="panel panel-info" style="margin-top: 10px;">
+                            <div class="panel-heading">
+                                <div class="panel-title"> <%= row.trainname %> (<%= row.trainnumber %>)</div>
+                            </div>
+                            <div class="panel-body">
+                                
+                                 
+                                <div class="form-group">
+
+                                    <label for="username" class="col-md-3 "><%= row.sfrom %></label>
+                                    <div class="col-md-9">
+                                        <p><b><%= row.sto %></b></p>
+                                    </div>
+                                </div>
+
+                                    <div class="form-group">
+
+                                        <label for="username" class="col-md-3 ">PNR No</label>
+                                        <div class="col-md-9">
+                                           <p><b><%= row.pnr %></b></p>
+                                        </div>
+                                    </div>
+
+                                  
+                                    <div class="form-group">
+
+                                        <label for="username" class="col-md-3 ">Coach</label>
+                                        <div class="col-md-9">
+                                            <p><%= row.fname %></p>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+
+                                        <label for="username" class="col-md-3 ">Coach</label>
+                                        <div class="col-md-9">
+                                            <p><%= row.coach %></p>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="username" class="col-md-3 ">Berth</label>
+                                        <div class="col-md-9">                                        
+                                    <% if(row.age >= 60) { %>
+                                        <p>4</p>
+                                        <% }else if(row.age%2 == 0){ %>
+                                            <p>8</p>
+                                      <%  }else if(row.age%3 == 0){ %>
+                                      <p>7</p>
+                                      <%  }else if(row.age%5 == 0){ %>
+                                      <p>2</p>
+                                      <%  } else { %>
+                                      <p>3</p>
+                                      <% } %>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+
+                                        <label for="username" class="col-md-3 ">Berth Type</label>
+                                        <div class="col-md-9">
+                                            <% if(row.age >= 60) { %>
+                                                <p>Lower</p>
+                                                <% }else if(row.age%2 == 0){ %>
+                                                    <p>Side Upper</p>
+                                              <%  }else if(row.age%3 == 0){ %>
+                                              <p>Side Lower</p>
+                                              <%  }else if(row.age%5 == 0){ %>
+                                              <p>Middle</p>
+                                              <%  } else { %>
+                                              <p>Upper</p>
+                                              <% } %>
+                                        </div>
+                                    </div>
+
+                                    <h3 style="margin: 10px;">Other Passanger Details</h3>
+
+                  <% if(row.passangers != ''){ %>
+
+                    <% for(var i=0;i< row.passangers.length;i++){  %>
+                                
+                                    <div class="form-group">
+
+                                        <label for="username" class="col-md-3 ">Name</label>
+                                        <div class="col-md-9">
+                                            <p><%= row.passangers[i] %></p>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+
+                                        <label for="username" class="col-md-3 ">Coach</label>
+                                        <div class="col-md-9">
+                                            <p><%= row.coach %></p>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="username" class="col-md-3 ">Berth</label>
+                                        <div class="col-md-9">                                        
+                                    <% if(row.pass_age[i] >= 60) { %>
+                                        <p><%= 14 + i %></p>
+                                        <% }else if(row.pass_age[i]%2 == 0){ %>
+                                            <p><%= 18 + i %></p>
+                                      <%  }else if(row.pass_age[i]%3 == 0){ %>
+                                      <p><%= 17 + i %></p>
+                                      <%  }else if(row.pass_age[i]%5 == 0){ %>
+                                      <p><%= 12 + i %></p>
+                                      <%  } else { %>
+                                      <p><%= 12 + i %></p>
+                                      <% } %>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+
+                                        <label for="username" class="col-md-3 ">Berth Type</label>
+                                        <div class="col-md-9">
+                                            <% if(row.pass_age[i] >= 60) { %>
+                                                <p>Lower</p>
+                                                <% }else if((row.pass_age[i]+i)%2 == 0){ %>
+                                                    <p>Side Upper</p>
+                                              <%  }else if((row.pass_age[i]+i)%3 == 0){ %>
+                                              <p>Side Lower</p>
+                                              <%  }else if((row.pass_age[i]+i)%5 == 0){ %>
+                                              <p>Middle</p>
+                                              <%  } else { %>
+                                              <p>Upper</p>
+                                              <% } %>
+                                        </div>
+                                    </div>
+                                     
+                <% }} %>
+
+
+
+                                    <div class="form-group">
+                                        <!-- Button -->
+                                        <% if(row.tid == 100){ %>
+                                        <div class=" col-md-9">
+                                           <button class="btn btn-danger"><a style="color: white;" href="/ticket/edit/<%= row._id %>">Cancel </a></button>
+                                        </div> 
+                                        <% } else { %>
+                                       
+                                            <div class=" col-md-9">
+                                                <button class="btn btn-danger"><a style="color: white;" href="#">Cancelled and Refunded</a></button>
+                                             </div> 
+                                        <% } %>
+                                    </div>
+                                    </div>
+
+                                   
+                              
+                            </div>
+                            <%} })} %>
+                        </div>
+
+            
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--  Total Payment Status  -->
+
+        <div id="stock" class="collpase">
+           
+        </div>
+        <!--  Total View Category  -->
+
+        <div id="category" class="collpase">
+           
+        </div>
+
+        <!--  Total View location  -->
+
+        <div id="payment" class="collpase">
+           
+        </div>
+
+        <div id="price" class="collpase">
+           
+    </div>
+
+        <div id="seata" class="collpase">
+            
+        </div>
+
+        <div id="seatb" class="collapse">
+           
+        </div>
+
+        <div id="seatc" class="collapse">
+            
+        </div>
+
+        <div id="refund" class="collapse">
+           
+        </div>
+
+        <div class="zoomImgPopup" id="zoomImgPopup">
+            <div class="imgCon">
+                <img id="myImg" src="compman.gif" class="zoomOpenImgStyle">
+                <div onClick="closeImgPopup()">
+                    <button class="closeZoomImgBtn">OK</button>
+                </div>
+            </div>
+        </div>
+
+
+    </section>
+
+
+    <script>
+
+        const imgVal = document.getElementById('productImg').src;
+        var zoomImgPopup = document.getElementById('zoomImgPopup')
+
+        function zoomImg() {
+
+            console.log("zoomImgPopup", zoomImgPopup)
+            zoomImgPopup.classList.add('open-zoomImgPopup')
+            console.log("fffvfvfvc", imgVal)
+            document.getElementById("myImg").src = imgVal;
+        }
+        function closeImgPopup() {
+            zoomImgPopup.classList.remove('open-zoomImgPopup')
+        }
+
+        const body = document.querySelector('body'),
+            sidebar = body.querySelector('nav'),
+            toggle = body.querySelector(".toggle"),
+            searchBtn = body.querySelector(".search-box"),
+            modeSwitch = body.querySelector(".toggle-switch"),
+            modeText = body.querySelector(".mode-text");
+
+        toggle.addEventListener("click", () => {
+            sidebar.classList.toggle("close");
+        })
+
+
+
+        searchBtn.addEventListener("click", () => {
+            sidebar.classList.remove("close");
+        })
+
+
+
+        modeSwitch.addEventListener("click", () => {
+            body.classList.toggle("dark");
+
+            if (body.classList.contains("dark")) {
+                modeText.innerText = "Light mode";
+            } else {
+                modeText.innerText = "Dark mode";
+
+            }
+        });
+
+        function dashboard() {
+            document.getElementById("Dashboard").classList.add('collpase-open');
+            document.getElementById("Dashboard").classList.remove('collpase');
+            document.getElementById("addproduct").classList.remove('collpase-open');
+            document.getElementById("addproduct").classList.add('collpase');
+            document.getElementById("payment").classList.remove('collpase-open');
+            document.getElementById("payment").classList.add('collpase');
+            document.getElementById("account").classList.remove('collpase-open');
+            document.getElementById("account").classList.add('collpase');
+            document.getElementById("userList").classList.remove('collpase-open');
+            document.getElementById("userList").classList.add('collpase');
+            document.getElementById("category").classList.remove('collpase-open');
+            document.getElementById("category").classList.add('collpase');
+            document.getElementById("stock").classList.remove('collpase-open');
+            document.getElementById("stock").classList.add('collpase');
+            document.getElementById("price").classList.remove('collpase-open');
+            document.getElementById("price").classList.add('collpase');
+            document.getElementById("seata").classList.remove('collpase-open');
+            document.getElementById("seata").classList.add('collpase');
+            document.getElementById("seatb").classList.remove('collpase-open');
+            document.getElementById("seatb").classList.add('collpase');
+            document.getElementById("seatc").classList.remove('collpase-open');
+            document.getElementById("seatc").classList.add('collpase');
+            document.getElementById("refund").classList.remove('collpase-open');
+            document.getElementById("refund").classList.add('collpase');
+            
+            
+
+        }
+
+        function payment() {
+            document.getElementById("payment").classList.add('collpase-open');
+            document.getElementById("payment").classList.remove('collpase');
+            document.getElementById("addproduct").classList.remove('collpase-open');
+            document.getElementById("addproduct").classList.add('collpase');
+            document.getElementById("Dashboard").classList.remove('collpase-open');
+            document.getElementById("Dashboard").classList.add('collpase');
+            document.getElementById("account").classList.remove('collpase-open');
+            document.getElementById("account").classList.add('collpase');
+            document.getElementById("userList").classList.remove('collpase-open');
+            document.getElementById("userList").classList.add('collpase');
+            document.getElementById("category").classList.remove('collpase-open');
+            document.getElementById("category").classList.add('collpase');
+            document.getElementById("stock").classList.remove('collpase-open');
+            document.getElementById("stock").classList.add('collpase');
+            document.getElementById("price").classList.remove('collpase-open');
+            document.getElementById("price").classList.add('collpase');
+            document.getElementById("seata").classList.remove('collpase-open');
+            document.getElementById("seata").classList.add('collpase');
+            document.getElementById("seatb").classList.remove('collpase-open');
+            document.getElementById("seatb").classList.add('collpase');
+            document.getElementById("seatc").classList.remove('collpase-open');
+            document.getElementById("seatc").classList.add('collpase');
+            document.getElementById("refund").classList.remove('collpase-open');
+            document.getElementById("refund").classList.add('collpase');
+        }
+
+        function addproduct() {
+
+            document.getElementById("addproduct").classList.add('collpase-open');
+            document.getElementById("addproduct").classList.remove('collpase');
+            document.getElementById("payment").classList.remove('collpase-open');
+            document.getElementById("payment").classList.add('collpase');
+            document.getElementById("Dashboard").classList.remove('collpase-open');
+            document.getElementById("Dashboard").classList.add('collpase');
+            document.getElementById("account").classList.remove('collpase-open');
+            document.getElementById("account").classList.add('collpase');
+            document.getElementById("userList").classList.remove('collpase-open');
+            document.getElementById("userList").classList.add('collpase');
+            document.getElementById("category").classList.remove('collpase-open');
+            document.getElementById("category").classList.add('collpase');
+            document.getElementById("stock").classList.remove('collpase-open');
+            document.getElementById("stock").classList.add('collpase');
+            document.getElementById("price").classList.remove('collpase-open');
+            document.getElementById("price").classList.add('collpase');
+            document.getElementById("seata").classList.remove('collpase-open');
+            document.getElementById("seata").classList.add('collpase');
+            document.getElementById("seatb").classList.remove('collpase-open');
+            document.getElementById("seatb").classList.add('collpase');
+            document.getElementById("seatc").classList.remove('collpase-open');
+            document.getElementById("seatc").classList.add('collpase');
+            document.getElementById("refund").classList.remove('collpase-open');
+            document.getElementById("refund").classList.add('collpase');
+
+        }
+        function account() {
+            document.getElementById("account").classList.add('collpase-open');
+            document.getElementById("account").classList.remove('collpase');
+            document.getElementById("addproduct").classList.remove('collpase-open');
+            document.getElementById("addproduct").classList.add('collpase');
+            document.getElementById("Dashboard").classList.remove('collpase-open');
+            document.getElementById("Dashboard").classList.add('collpase');
+            document.getElementById("payment").classList.remove('collpase-open');
+            document.getElementById("payment").classList.add('collpase');
+            document.getElementById("userList").classList.remove('collpase-open');
+            document.getElementById("userList").classList.add('collpase');
+            document.getElementById("category").classList.remove('collpase-open');
+            document.getElementById("category").classList.add('collpase');
+            document.getElementById("stock").classList.remove('collpase-open');
+            document.getElementById("stock").classList.add('collpase');
+            document.getElementById("price").classList.remove('collpase-open');
+            document.getElementById("price").classList.add('collpase');
+            document.getElementById("seata").classList.remove('collpase-open');
+            document.getElementById("seata").classList.add('collpase');
+            document.getElementById("seatb").classList.remove('collpase-open');
+            document.getElementById("seatb").classList.add('collpase');
+            document.getElementById("seatc").classList.remove('collpase-open');
+            document.getElementById("seatc").classList.add('collpase');
+            document.getElementById("refund").classList.remove('collpase-open');
+            document.getElementById("refund").classList.add('collpase');
+        }
+        function userList() {
+            document.getElementById("userList").classList.add('collpase-open');
+            document.getElementById("userList").classList.remove('collpase');
+            document.getElementById("account").classList.remove('collpase-open');
+            document.getElementById("account").classList.add('collpase');
+            document.getElementById("category").classList.remove('collpase-open');
+            document.getElementById("category").classList.add('collpase');
+            document.getElementById("addproduct").classList.remove('collpase-open');
+            document.getElementById("addproduct").classList.add('collpase');
+            document.getElementById("Dashboard").classList.remove('collpase-open');
+            document.getElementById("Dashboard").classList.add('collpase');
+            document.getElementById("payment").classList.remove('collpase-open');
+            document.getElementById("payment").classList.add('collpase');
+            document.getElementById("stock").classList.remove('collpase-open');
+            document.getElementById("stock").classList.add('collpase');
+            document.getElementById("price").classList.remove('collpase-open');
+            document.getElementById("price").classList.add('collpase');
+            document.getElementById("seata").classList.remove('collpase-open');
+            document.getElementById("seata").classList.add('collpase');
+            document.getElementById("seatb").classList.remove('collpase-open');
+            document.getElementById("seatb").classList.add('collpase');
+            document.getElementById("seatc").classList.remove('collpase-open');
+            document.getElementById("seatc").classList.add('collpase');
+            document.getElementById("refund").classList.remove('collpase-open');
+            document.getElementById("refund").classList.add('collpase');
+        }
+        function category() {
+            document.getElementById("category").classList.add('collpase-open');
+            document.getElementById("category").classList.remove('collpase');
+            document.getElementById("account").classList.remove('collpase-open');
+            document.getElementById("account").classList.add('collpase');
+            document.getElementById("addproduct").classList.remove('collpase-open');
+            document.getElementById("addproduct").classList.add('collpase');
+            document.getElementById("Dashboard").classList.remove('collpase-open');
+            document.getElementById("Dashboard").classList.add('collpase');
+            document.getElementById("payment").classList.remove('collpase-open');
+            document.getElementById("payment").classList.add('collpase');
+            document.getElementById("userList").classList.remove('collpase-open');
+            document.getElementById("userList").classList.add('collpase');
+            document.getElementById("stock").classList.remove('collpase-open');
+            document.getElementById("stock").classList.add('collpase');
+            document.getElementById("price").classList.remove('collpase-open');
+            document.getElementById("price").classList.add('collpase');
+            document.getElementById("seata").classList.remove('collpase-open');
+            document.getElementById("seata").classList.add('collpase');
+            document.getElementById("seatb").classList.remove('collpase-open');
+            document.getElementById("seatb").classList.add('collpase');
+            document.getElementById("seatc").classList.remove('collpase-open');
+            document.getElementById("seatc").classList.add('collpase');
+            document.getElementById("refund").classList.remove('collpase-open');
+            document.getElementById("refund").classList.add('collpase');
+        }
+
+        function stock() {
+            document.getElementById("stock").classList.add('collpase-open');
+            document.getElementById("stock").classList.remove('collpase');
+            document.getElementById("category").classList.remove('collpase-open');
+            document.getElementById("category").classList.add('collpase');
+            document.getElementById("account").classList.remove('collpase-open');
+            document.getElementById("account").classList.add('collpase');
+            document.getElementById("addproduct").classList.remove('collpase-open');
+            document.getElementById("addproduct").classList.add('collpase');
+            document.getElementById("Dashboard").classList.remove('collpase-open');
+            document.getElementById("Dashboard").classList.add('collpase');
+            document.getElementById("payment").classList.remove('collpase-open');
+            document.getElementById("payment").classList.add('collpase');
+            document.getElementById("userList").classList.remove('collpase-open');
+            document.getElementById("userList").classList.add('collpase');
+            document.getElementById("price").classList.remove('collpase-open');
+            document.getElementById("price").classList.add('collpase');
+            document.getElementById("seata").classList.remove('collpase-open');
+            document.getElementById("seata").classList.add('collpase');
+            document.getElementById("seatb").classList.remove('collpase-open');
+            document.getElementById("seatb").classList.add('collpase');
+            document.getElementById("seatc").classList.remove('collpase-open');
+            document.getElementById("seatc").classList.add('collpase');
+            document.getElementById("refund").classList.remove('collpase-open');
+            document.getElementById("refund").classList.add('collpase');
+        }
+        function price() {
+            document.getElementById("price").classList.add('collpase-open');
+            document.getElementById("price").classList.remove('collpase');
+            document.getElementById("stock").classList.remove('collpase-open');
+            document.getElementById("stock").classList.add('collpase');
+            document.getElementById("category").classList.remove('collpase-open');
+            document.getElementById("category").classList.add('collpase');
+            document.getElementById("account").classList.remove('collpase-open');
+            document.getElementById("account").classList.add('collpase');
+            document.getElementById("addproduct").classList.remove('collpase-open');
+            document.getElementById("addproduct").classList.add('collpase');
+            document.getElementById("Dashboard").classList.remove('collpase-open');
+            document.getElementById("Dashboard").classList.add('collpase');
+            document.getElementById("payment").classList.remove('collpase-open');
+            document.getElementById("payment").classList.add('collpase');
+            document.getElementById("userList").classList.remove('collpase-open');
+            document.getElementById("userList").classList.add('collpase');
+            document.getElementById("seata").classList.remove('collpase-open');
+            document.getElementById("seata").classList.add('collpase');
+            document.getElementById("seatb").classList.remove('collpase-open');
+            document.getElementById("seatb").classList.add('collpase');
+            document.getElementById("seatc").classList.remove('collpase-open');
+            document.getElementById("seatc").classList.add('collpase');
+            document.getElementById("refund").classList.remove('collpase-open');
+            document.getElementById("refund").classList.add('collpase');
+        }
+
+        function seata() {
+            document.getElementById("seata").classList.add('collpase-open');
+            document.getElementById("seata").classList.remove('collpase');
+            document.getElementById("price").classList.remove('collpase-open');
+            document.getElementById("price").classList.add('collpase');
+            document.getElementById("stock").classList.remove('collpase-open');
+            document.getElementById("stock").classList.add('collpase');
+            document.getElementById("category").classList.remove('collpase-open');
+            document.getElementById("category").classList.add('collpase');
+            document.getElementById("account").classList.remove('collpase-open');
+            document.getElementById("account").classList.add('collpase');
+            document.getElementById("addproduct").classList.remove('collpase-open');
+            document.getElementById("addproduct").classList.add('collpase');
+            document.getElementById("Dashboard").classList.remove('collpase-open');
+            document.getElementById("Dashboard").classList.add('collpase');
+            document.getElementById("payment").classList.remove('collpase-open');
+            document.getElementById("payment").classList.add('collpase');
+            document.getElementById("userList").classList.remove('collpase-open');
+            document.getElementById("userList").classList.add('collpase');
+            document.getElementById("seatb").classList.remove('collpase-open');
+            document.getElementById("seatb").classList.add('collpase');
+            document.getElementById("seatc").classList.remove('collpase-open');
+            document.getElementById("seatc").classList.add('collpase');
+            document.getElementById("refund").classList.remove('collpase-open');
+            document.getElementById("refund").classList.add('collpase');
+
+        }
+
+        function seatb() {
+            document.getElementById("seatb").classList.add('collpase-open');
+            document.getElementById("seatb").classList.remove('collpase');
+            document.getElementById("seata").classList.remove('collpase-open');
+            document.getElementById("seata").classList.add('collpase');
+            document.getElementById("price").classList.remove('collpase-open');
+            document.getElementById("price").classList.add('collpase');
+            document.getElementById("stock").classList.remove('collpase-open');
+            document.getElementById("stock").classList.add('collpase');
+            document.getElementById("category").classList.remove('collpase-open');
+            document.getElementById("category").classList.add('collpase');
+            document.getElementById("account").classList.remove('collpase-open');
+            document.getElementById("account").classList.add('collpase');
+            document.getElementById("addproduct").classList.remove('collpase-open');
+            document.getElementById("addproduct").classList.add('collpase');
+            document.getElementById("Dashboard").classList.remove('collpase-open');
+            document.getElementById("Dashboard").classList.add('collpase');
+            document.getElementById("payment").classList.remove('collpase-open');
+            document.getElementById("payment").classList.add('collpase');
+            document.getElementById("userList").classList.remove('collpase-open');
+            document.getElementById("userList").classList.add('collpase');
+            document.getElementById("seatc").classList.remove('collpase-open');
+            document.getElementById("seatc").classList.add('collpase');
+            document.getElementById("refund").classList.remove('collpase-open');
+            document.getElementById("refund").classList.add('collpase');
+
+        }
+
+        function seatc() {
+            document.getElementById("seatc").classList.add('collpase-open');
+            document.getElementById("seatc").classList.remove('collpase');
+            document.getElementById("seatb").classList.remove('collpase-open');
+            document.getElementById("seatb").classList.add('collpase');
+            document.getElementById("seata").classList.remove('collpase-open');
+            document.getElementById("seata").classList.add('collpase');
+            document.getElementById("price").classList.remove('collpase-open');
+            document.getElementById("price").classList.add('collpase');
+            document.getElementById("stock").classList.remove('collpase-open');
+            document.getElementById("stock").classList.add('collpase');
+            document.getElementById("category").classList.remove('collpase-open');
+            document.getElementById("category").classList.add('collpase');
+            document.getElementById("account").classList.remove('collpase-open');
+            document.getElementById("account").classList.add('collpase');
+            document.getElementById("addproduct").classList.remove('collpase-open');
+            document.getElementById("addproduct").classList.add('collpase');
+            document.getElementById("Dashboard").classList.remove('collpase-open');
+            document.getElementById("Dashboard").classList.add('collpase');
+            document.getElementById("payment").classList.remove('collpase-open');
+            document.getElementById("payment").classList.add('collpase');
+            document.getElementById("userList").classList.remove('collpase-open');
+            document.getElementById("userList").classList.add('collpase');
+            document.getElementById("refund").classList.remove('collpase-open');
+            document.getElementById("refund").classList.add('collpase');
+        }
+
+        function refund(){
+            document.getElementById("refund").classList.add('collpase-open');
+            document.getElementById("refund").classList.remove('collpase');
+            document.getElementById("seatc").classList.remove('collpase-open');
+            document.getElementById("seatc").classList.add('collpase');
+            document.getElementById("seatb").classList.remove('collpase-open');
+            document.getElementById("seatb").classList.add('collpase');
+            document.getElementById("seata").classList.remove('collpase-open');
+            document.getElementById("seata").classList.add('collpase');
+            document.getElementById("price").classList.remove('collpase-open');
+            document.getElementById("price").classList.add('collpase');
+            document.getElementById("stock").classList.remove('collpase-open');
+            document.getElementById("stock").classList.add('collpase');
+            document.getElementById("category").classList.remove('collpase-open');
+            document.getElementById("category").classList.add('collpase');
+            document.getElementById("account").classList.remove('collpase-open');
+            document.getElementById("account").classList.add('collpase');
+            document.getElementById("addproduct").classList.remove('collpase-open');
+            document.getElementById("addproduct").classList.add('collpase');
+            document.getElementById("Dashboard").classList.remove('collpase-open');
+            document.getElementById("Dashboard").classList.add('collpase');
+            document.getElementById("payment").classList.remove('collpase-open');
+            document.getElementById("payment").classList.add('collpase');
+            document.getElementById("userList").classList.remove('collpase-open');
+            document.getElementById("userList").classList.add('collpase');
+        }
+
+    </script>
+
+</body>
+
+</html>
